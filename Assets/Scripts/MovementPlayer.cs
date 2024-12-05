@@ -20,6 +20,8 @@ public class MovementPlayer : MonoBehaviour
     private float pontos = 0;
     private bool vivo = true;
     private GameObject telaGameOver, objetivos;
+    [SerializeField] private AudioSource moeda;
+
 
     
 
@@ -33,6 +35,7 @@ public class MovementPlayer : MonoBehaviour
         telaGameOver.SetActive(false);
         objetivos = GameObject.Find("pegue");
         objetivos.SetActive(true);
+        moeda = GetComponent<AudioSource>();
         
     }
 
@@ -44,15 +47,11 @@ public class MovementPlayer : MonoBehaviour
     //Andar
     public void Andar()
     {
-        if(vivo == true)
-        {
         float moveV = Input.GetAxis("Vertical");
         Vector3 direcao = moveV * transform.forward;
         rb.MovePosition(rb.position + direcao * velocidade * Time.deltaTime);
-        }
-        
-     
     }
+      
     //Pular
     public void Pular()
     {
@@ -73,14 +72,14 @@ public class MovementPlayer : MonoBehaviour
             if(other.gameObject.CompareTag("Esfera"))
             {
                 other.gameObject.SetActive(false);
-                //sfx.Play();
+                moeda.Play();
                 pontos++;
                 textoPontos.text = pontos.ToString();
             }
-                /*else
+                else
                 {
-                    sfx.Stop();
-                }*/
+                    moeda.Stop();
+                }
                   if(other.gameObject.CompareTag("espinhos"))
                      {
                      gameObject.SetActive(false);
@@ -88,9 +87,18 @@ public class MovementPlayer : MonoBehaviour
                      objetivos.SetActive(false);
         
                      }
+
+                      if(other.gameObject.CompareTag("fase"))
+            {
+                int TotalPontos = Int32.Parse(pontoTotal.text);
+                if(pontos == TotalPontos)
+                {
+                    SceneManager.LoadScene("fase2");
+                }
         }
 
     
         
 
+}
 }

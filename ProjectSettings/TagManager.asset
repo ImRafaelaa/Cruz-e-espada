@@ -9,6 +9,7 @@ TagManager:
   - Esfera
   - espinhos
   - Objetivo
+  - fase
   layers:
   - Default
   - TransparentFX
