@@ -146,7 +146,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5435465498580229233}
-  m_Solo: 0
+  m_Solo: 1
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
@@ -493,7 +493,7 @@ AnimatorStateMachine:
     m_Position: {x: 330, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5435465498580229233}
-    m_Position: {x: 680, y: -730, z: 0}
+    m_Position: {x: 680, y: -720, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5658359109372279724}
     m_Position: {x: 80, y: 60, z: 0}

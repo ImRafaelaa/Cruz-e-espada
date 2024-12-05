@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class AnimationPlayer : MonoBehaviour
 {
@@ -6,11 +9,15 @@ public class AnimationPlayer : MonoBehaviour
     [SerializeField] private MovementPlayer move;
     private bool estaNoChao = true;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+  
         animPlayer = GetComponent<Animator>();
         move = GetComponent<MovementPlayer>();
+
+
     }
 
     // Update is called once per frame
@@ -20,7 +27,9 @@ public class AnimationPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             animPlayer.SetBool("Andar", true);
+            animPlayer.SetBool("EstaVivo", true);
             move.Andar();
+            
         }
         else
         {
@@ -83,17 +92,24 @@ public class AnimationPlayer : MonoBehaviour
         {
             animPlayer.SetBool("NoPiso", false);
             animPlayer.SetTrigger("Pulo");
-            move.Pular();
             estaNoChao = false;
         }
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Chao"))
+        if(collision.gameObject.CompareTag("espinhos"))
         {
-            animPlayer.SetBool("NoPiso", true);
-            estaNoChao = true;
+            animPlayer.SetBool("EstaVivo", false);
+            animPlayer.SetTrigger("Morte");
+          
+            
+
+        
         }
+    
     }
+
+
 }

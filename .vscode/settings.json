@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Animação.sln"
+    "dotnet.defaultSolution": "Cruz-e-espada.sln"
 }
